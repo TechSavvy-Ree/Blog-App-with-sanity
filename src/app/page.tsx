@@ -1,8 +1,8 @@
 import React from 'react';
-import Image from 'next/image'; // Import the Next.js Image component
+import NextImage from 'next/image'; // Import the Next.js Image component
 import { client } from '@/sanity/lib/client';
 import { urlFor } from '@/sanity/lib/image';
-// import { Image } from 'sanity';
+// import { Image as SanityImage } from 'sanity';
 
 // Define the Blog interface based on your Sanity schema
 interface Blog {
@@ -31,13 +31,15 @@ export default async function Page() {
             <h1>{blog.Title}</h1>
             <p>{blog.description}</p>
             {blog.mainImage && (
-              <Image 
+              <NextImage
                 src={urlFor(blog.mainImage).url()} // Call urlFor correctly
                 width={200} 
                 height={200} 
-                alt={blog.Title} // Use the blog title as the alt text
+                // alt={blog.Title} // Use the blog title as the alt text
+                alt='Image from Sanity'
               />
             )}
+             {/* <SanityImage {...props} /> */}
           </div>
         ))}
       </div>
